@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ball : MonoBehaviour
+{
+    private GameObject pedal;
+    private bool GameStart = false;
+    
+    void Start()
+    {
+       pedal = GameObject.FindObjectOfType<paddle>().gameObject;
+    }
+
+    
+    void Update()
+    {
+        if (!GameStart)
+        {
+            transform.position = new Vector3(pedal.transform.position.x, transform.position.y, transform.position.z);
+        }
+
+        if (Input.GetMouseButton(0)&& !GameStart)
+        {
+            GameStart = true;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(2f, 10f);
+        }
+    }
+}
